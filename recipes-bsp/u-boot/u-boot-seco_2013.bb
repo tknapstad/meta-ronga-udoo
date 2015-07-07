@@ -12,10 +12,9 @@ PROVIDES += "u-boot"
 PV="norbit-seco-2013"
 
 SRC_URI = "file://uboot_2013.10-214db3b4b9f7c5304561de3f059c0402e460fc26.tar.gz \
-	   file://0001-modified-seco-conf-for-yocto-meta.patch \
        file://0002-seco-buildscript-config.patch"
 
-S = "${WORKDIR}/git"
+S = "${WORKDIR}"
 
 do_compile () {
    compile.sh

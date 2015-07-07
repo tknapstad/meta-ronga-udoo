@@ -1,6 +1,6 @@
-diff --git a/include/configs/mx6q_seco.h.orig b/include/configs/mx6q_seco.h
+diff --git a/include/configs/mx6q_seco.h b/include/configs/mx6q_seco.h
 index 5bbd2e0..d2c9628 100644
---- a/include/configs/mx6q_seco.h.orig
+--- a/include/configs/mx6q_seco.h
 +++ b/include/configs/mx6q_seco.h
 @@ -248,7 +248,7 @@
  		"ipaddr=10.0.0.5\0"                                  \

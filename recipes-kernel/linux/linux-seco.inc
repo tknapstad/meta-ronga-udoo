@@ -15,3 +15,5 @@ SCMVERSION ?= "y"
 SRC_URI = "file://kernel_and_modules_3.0.35-a0e78c16eb113953ea00f04cffa85298b725be55.tar.gz \
            file://defconfig \
 "
+
+S = "${WORKDIR}"
