@@ -12,12 +12,16 @@ PROVIDES += "u-boot"
 PV="norbit-seco-2013"
 
 SRC_URI = "file://uboot_2013.10-214db3b4b9f7c5304561de3f059c0402e460fc26.tar.gz \
-       file://0002-seco-buildscript-config.patch"
+        file://0001-modified-seco-conf-for-yocto-meta.patch \
+        file://0003-hardfloat.patch"
 
 S = "${WORKDIR}"
 
-do_compile () {
-   compile.sh
-}
+# TODO: make CPU_TYPE configurable?
+
+EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CPPFLAGS}" \
+                 HOSTLDFLAGS="-L${STAGING_BASE_LIBDIR_NATIVE} -L${STAGING_LIBDIR_NATIVE}" \
+                 HOSTSTRIP=true \
+                 DDR_SIZE=2 DDR_TYPE=1 BOARD_TYPE=A62 CPU_TYPE=QUAD ENV_DEVICE=ENV_MMC'
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"

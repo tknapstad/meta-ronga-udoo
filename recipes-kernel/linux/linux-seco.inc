@@ -9,7 +9,7 @@ require recipes-kernel/linux/linux-imx.inc
 
 # Put a local version until we have a true SRCREV to point to
 LOCALVERSION ?= "+yocto"
-SCMVERSION ?= "y"
+SCMVERSION = "n"
 
 # SRC_URI for SECOSBC-A62 kernel
 SRC_URI = "file://kernel_and_modules_3.0.35-a0e78c16eb113953ea00f04cffa85298b725be55.tar.gz \

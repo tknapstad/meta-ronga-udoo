@@ -4,7 +4,7 @@ index 0000000..4b7331c
 --- /dev/null
 +++ b/tools/sconfig
 @@ -0,0 +1,11 @@
-+MEMORY_SIZE 1
++MEMORY_SIZE 2
 +BOARD_TYPE A62
 +CPU_TYPE QUAD
 +ENV_DEVICE MMC
@@ -13,5 +13,5 @@ index 0000000..4b7331c
 +DEBUG_UART5 
 +RTC_LOW_POWER 
 +RTC_EXT 
-+COMPILER /opt/gcc-linaro-4.9-2015.02-3-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
++COMPILER arm-poky-linux-gnueabi-
 +UBOOT_VER 2013

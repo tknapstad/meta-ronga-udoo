@@ -353,7 +353,7 @@ CONFIG_Q7_PWM3=y
 # CONFIG_Q7_CAN is not set
 # CONFIG_Q7_CAN_TERM is not set
 # CONFIG_Q7_CAN_SILENT_MODE is not set
-CONFIG_USBC_DEBUG_UART5=y
+# CONFIG_USBC_DEBUG_UART5 is not set
 
 #
 # Support for Q7 SDIO interface
