@@ -1,0 +1,13 @@
+diff --git a/arch/arm/config.mk.orig b/arch/arm/config.mk
+index bdabcf4..695f78a 100644
+--- a/arch/arm/config.mk.orig
++++ b/arch/arm/config.mk
+@@ -17,7 +17,7 @@ endif
+ 
+ LDFLAGS_FINAL += --gc-sections
+ PLATFORM_RELFLAGS += -ffunction-sections -fdata-sections \
+-		     -fno-common -ffixed-r9 -msoft-float
++		     -fno-common -ffixed-r9 -mfloat-abi=hard
+ 
+ # Support generic board on ARM
+ __HAVE_ARCH_GENERIC_BOARD := y
