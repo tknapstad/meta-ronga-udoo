@@ -17,3 +17,11 @@ SRC_URI = "file://kernel_and_modules_3.0.35-a0e78c16eb113953ea00f04cffa85298b725
 "
 
 S = "${WORKDIR}"
+
+# The kernel makefile fails to find the i.MX6 firmware when doing
+# out of tree builds in a separate folder. Add a symlink prior to
+# do_compile so that the kernel builds.
+do_compile_prepend () {
+   mkdir -p ${B}/firmware/imx/sdma
+   ln -s ${S}/firmware/imx/sdma/sdma-imx6q-to1.bin ${B}/firmware/imx/sdma/sdma-imx6q-to1.bin
+}
