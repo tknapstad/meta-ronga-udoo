@@ -32,18 +32,25 @@ IMAGE_INSTALL += " \
     base-passwd \
     busybox \
     ${@base_contains("MACHINE_FEATURES", "systemd", "${SYSTEMD_INSTALL}", "${SYSV_INSTALL}", d)} \
-    packagegroup-fsl-gstreamer \
     packagegroup-base \
 "
 
 # A26 specific packages:
 IMAGE_INSTALL += " \
-    chromium \
+    directfb \
+    directfb-examples \
+    nano \
+    openssh \
+    firefox \
+    webkit-gtk \
 "
+
+# Disabled packages
+#    chromium 
 
 inherit core-image distro_features_check
 
-REQUIRED_DISTRO_FEATURES = "x11"
+# REQUIRED_DISTRO_FEATURES = "x11"
 
 
 
