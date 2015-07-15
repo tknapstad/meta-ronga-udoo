@@ -45,9 +45,6 @@ IMAGE_INSTALL += "gpu-viv-bin-mx6q \
                      qtwebkit-examples-examples \
                      libgal-mx6 \
                      libvivante-mx6 \
-                     gstreamer1.0-plugins-imx-imxeglvivsink \
-                     imx-gpu-viv-tools \
-                     imx-gpu-viv-demos \
                      binutils \
                      libgcc \
                      nano \
