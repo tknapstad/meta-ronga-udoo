@@ -1,0 +1,104 @@
+diff --git a/Source/JavaScriptCore/jit/ThunkGenerators.cpp b/Source/JavaScriptCore/jit/ThunkGenerators.cpp
+index 9684df2..8af82d8 100644
+--- a/Source/JavaScriptCore/jit/ThunkGenerators.cpp
++++ b/Source/JavaScriptCore/jit/ThunkGenerators.cpp
+@@ -548,6 +548,30 @@ double jsRound(double d)
+     } \
+     static MathThunk UnaryDoubleOpWrapper(function) = &function##Thunk;
+ 
++#elif CPU(X86) && COMPILER(GCC) && OS(LINUX) && defined(__PIC__)
++#define defineUnaryDoubleOpWrapper(function) \
++    asm( \
++        ".text\n" \
++        ".globl " SYMBOL_STRING(function##Thunk) "\n" \
++        HIDE_SYMBOL(function##Thunk) "\n" \
++        SYMBOL_STRING(function##Thunk) ":" "\n" \
++        "pushl %ebx\n" \
++        "subl $20, %esp\n" \
++        "movsd %xmm0, (%esp) \n" \
++        "call __x86.get_pc_thunk.bx\n" \
++        "addl $_GLOBAL_OFFSET_TABLE_, %ebx\n" \
++        "call " GLOBAL_REFERENCE(function) "\n" \
++        "fstpl (%esp) \n" \
++        "movsd (%esp), %xmm0 \n" \
++        "addl $20, %esp\n" \
++        "popl %ebx\n" \
++        "ret\n" \
++    );\
++    extern "C" { \
++        MathThunkCallingConvention function##Thunk(MathThunkCallingConvention); \
++    } \
++    static MathThunk UnaryDoubleOpWrapper(function) = &function##Thunk;
++
+ #elif CPU(X86) && COMPILER(GCC) && (PLATFORM(MAC) || OS(LINUX))
+ #define defineUnaryDoubleOpWrapper(function) \
+     asm( \
+diff --git a/Source/WTF/wtf/unicode/wchar/UnicodeWchar.h b/Source/WTF/wtf/unicode/wchar/UnicodeWchar.h
+index a861091..c2c2d52 100644
+--- a/Source/WTF/wtf/unicode/wchar/UnicodeWchar.h
++++ b/Source/WTF/wtf/unicode/wchar/UnicodeWchar.h
+@@ -29,12 +29,13 @@
+ #include <wtf/unicode/ScriptCodesFromICU.h>
+ #include <wtf/unicode/UnicodeMacrosFromICU.h>
+ 
+-#ifndef ANDROID
+-# include <wchar.h>
+- typedef wchar_t UChar;
+-#else
++//#ifndef ANDROID
++//#include <wchar.h>
++// typedef wchar_t UChar;
++//#else
++#include <wctype.h>
+  typedef unsigned short int UChar;
+-#endif
++//#endif
+ 
+ typedef uint32_t UChar32;
+ 
+diff --git a/Source/WebKit/WebKit1.pri b/Source/WebKit/WebKit1.pri
+index 6fc1829..c64b412 100644
+--- a/Source/WebKit/WebKit1.pri
++++ b/Source/WebKit/WebKit1.pri
+@@ -18,7 +18,7 @@ have?(qtpositioning):enable?(GEOLOCATION): QT += positioning
+ 
+ contains(CONFIG, texmap): DEFINES += WTF_USE_TEXTURE_MAPPER=1
+ 
+-use?(PLUGIN_BACKEND_XLIB): PKGCONFIG += x11
++#use?(PLUGIN_BACKEND_XLIB): PKGCONFIG += x11
+ 
+ QT += network
+ 
+diff --git a/Source/WebKit2/Target.pri b/Source/WebKit2/Target.pri
+index a9179d9..984baa4 100644
+--- a/Source/WebKit2/Target.pri
++++ b/Source/WebKit2/Target.pri
+@@ -951,10 +951,10 @@ have?(qtpositioning):enable?(GEOLOCATION): QT += positioning
+ 
+ use?(3D_GRAPHICS): WEBKIT += angle
+ 
+-use?(PLUGIN_BACKEND_XLIB) {
+-    DEFINES += XP_UNIX
+-    PKGCONFIG += x11
+-    DEFINES += MOZ_X11
+-}
++#use?(PLUGIN_BACKEND_XLIB) {
++#    DEFINES += XP_UNIX
++#    PKGCONFIG += x11
++#    DEFINES += MOZ_X11
++#}
+ 
+ include(DerivedSources.pri)
+diff --git a/Source/widgetsapi.pri b/Source/widgetsapi.pri
+index 5c0ad57..8173650 100644
+--- a/Source/widgetsapi.pri
++++ b/Source/widgetsapi.pri
+@@ -33,7 +33,7 @@ use?(QT_MULTIMEDIA): QT *= multimediawidgets
+ 
+ contains(CONFIG, texmap): DEFINES += WTF_USE_TEXTURE_MAPPER=1
+ 
+-use?(PLUGIN_BACKEND_XLIB): PKGCONFIG += x11
++#use?(PLUGIN_BACKEND_XLIB): PKGCONFIG += x11
+ 
+ QT += network widgets widgets-private
+ have?(QTPRINTSUPPORT): QT += printsupport

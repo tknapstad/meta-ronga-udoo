@@ -16,13 +16,15 @@ SYSV_INSTALL = " \
 
 MACHINE_FEATURES += "wifi"
 
+DISTRO_FEATURES_remove = "x11 wayland"
+
 IMAGE_FEATURES += "\
      ssh-server-openssh \
     splash \
 "
 
 DEPENDS += "\
-     gpu-viv-bin-mx6q \
+     imx-gpu-viv \
       libpng \
 "
 
@@ -41,14 +43,9 @@ IMAGE_INSTALL += " \
     packagegroup-base \
 "
 
-#CAN
-#IMAGE_INSTALL += " \
-#    canutils \
-#"
-
 #QT5:
 IMAGE_INSTALL += " \
-	gpu-viv-bin-mx6q \
+	imx-gpu-viv \
      	gcc \
    	g++ \
  	binutils \

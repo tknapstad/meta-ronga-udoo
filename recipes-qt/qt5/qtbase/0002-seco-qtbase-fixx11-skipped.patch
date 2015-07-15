@@ -1,0 +1,84 @@
+diff --git a/src/plugins/platforms/eglfs/qeglfscontext.cpp b/src/plugins/platforms/eglfs/qeglfscontext.cpp
+index 6216fa8..63fc507 100644
+--- a/src/plugins/platforms/eglfs/qeglfscontext.cpp
++++ b/src/plugins/platforms/eglfs/qeglfscontext.cpp
+@@ -31,12 +31,14 @@
+ **
+ ****************************************************************************/
+ 
++#include <QtCore/qtextstream.h>
+ #include "qeglfscontext.h"
+ #include "qeglfswindow.h"
+ #include "qeglfshooks.h"
+ 
+ #include <QtPlatformSupport/private/qeglconvenience_p.h>
+ #include <QtPlatformSupport/private/qeglpbuffer_p.h>
++#include <fixx11.h>
+ #include <QtPlatformSupport/private/qeglplatformcursor_p.h>
+ #include <QtGui/QSurface>
+ #include <QtDebug>
+diff --git a/src/plugins/platforms/eglfs/qeglfshooks_stub.cpp b/src/plugins/platforms/eglfs/qeglfshooks_stub.cpp
+index 26d77a2..70cbb95 100644
+--- a/src/plugins/platforms/eglfs/qeglfshooks_stub.cpp
++++ b/src/plugins/platforms/eglfs/qeglfshooks_stub.cpp
+@@ -32,6 +32,7 @@
+ ****************************************************************************/
+ 
+ #include "qeglfshooks.h"
++#include <fixx11.h>
+ #include <QtPlatformSupport/private/qeglplatformcursor_p.h>
+ #include <QtPlatformSupport/private/qeglconvenience_p.h>
+ #include <QtCore/QRegularExpression>
+diff --git a/src/plugins/platforms/eglfs/qeglfsintegration.cpp b/src/plugins/platforms/eglfs/qeglfsintegration.cpp
+index 2a4eae3..20a3d43 100644
+--- a/src/plugins/platforms/eglfs/qeglfsintegration.cpp
++++ b/src/plugins/platforms/eglfs/qeglfsintegration.cpp
+@@ -30,13 +30,13 @@
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
+-
++#include <QtCore/qtextstream.h>
+ #include "qeglfsintegration.h"
+ 
+ #include "qeglfswindow.h"
+ #include "qeglfshooks.h"
+ #include "qeglfscontext.h"
+-
++#include <fixx11.h>
+ #include <QtGui/private/qguiapplication_p.h>
+ 
+ #include <QtPlatformSupport/private/qeglconvenience_p.h>
+diff --git a/src/plugins/platforms/eglfs/qeglfsscreen.cpp b/src/plugins/platforms/eglfs/qeglfsscreen.cpp
+index cd68540..258bd05 100644
+--- a/src/plugins/platforms/eglfs/qeglfsscreen.cpp
++++ b/src/plugins/platforms/eglfs/qeglfsscreen.cpp
+@@ -30,10 +30,11 @@
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
+-
++#include <QtCore/qtextstream.h>
+ #include "qeglfsscreen.h"
+ #include "qeglfswindow.h"
+ #include "qeglfshooks.h"
++#include <fixx11.h>
+ #include <QtPlatformSupport/private/qeglplatformcursor_p.h>
+ 
+ QT_BEGIN_NAMESPACE
+diff --git a/src/plugins/platforms/eglfs/qeglfswindow.cpp b/src/plugins/platforms/eglfs/qeglfswindow.cpp
+index f5839e0..da04d33 100644
+--- a/src/plugins/platforms/eglfs/qeglfswindow.cpp
++++ b/src/plugins/platforms/eglfs/qeglfswindow.cpp
+@@ -30,9 +30,10 @@
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
+-
++#include <QtCore/qtextstream.h>
+ #include "qeglfswindow.h"
+ #include "qeglfshooks.h"
++#include <fixx11.h>
+ #include <qpa/qwindowsysteminterface.h>
+ #include <qpa/qplatformintegration.h>
+ #include <private/qguiapplication_p.h>
