@@ -15,14 +15,16 @@ SYSV_INSTALL = " \
 "
 
 IMAGE_FEATURES += "\
-    splash \
+      splash \
       package-management \
 "
 
 DEPENDS += "\
         gpu-viv-bin-mx6q \
-      libpng \
+        libpng \
+	swig \
 "
+
 LICENSE = "MIT"
 
 #from QT-in-use-common:
@@ -49,12 +51,15 @@ IMAGE_INSTALL += "gpu-viv-bin-mx6q \
                      libgcc \
                      nano \
                      dbus \
-                     net-snmp \
+                     net-snmp-server \
+		     net-snmp-server-snmptrapd \
+		     net-snmp-server-snmpd \
+		     net-snmp-client \
+		     net-snmp-mibs \
                      python-core \
                      packagegroup-fsl-gstreamer \
                      packagegroup-fsl-tools-testapps \
                      packagegroup-fsl-tools-benchmark \
-                     packagegroup-core-directfb \
                      imx-vpu \
                      imx-test \
                      gstreamer \

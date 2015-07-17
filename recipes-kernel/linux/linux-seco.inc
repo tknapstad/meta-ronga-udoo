@@ -23,7 +23,7 @@ S = "${WORKDIR}"
 # The kernel makefile fails to find the i.MX6 firmware when doing
 # out of tree builds in a separate folder. Add a symlink prior to
 # do_compile so that the kernel builds.
-do_compile_prepend () {
-   mkdir -p ${B}/firmware/imx/sdma
-   ln -sf ${S}/firmware/imx/sdma/sdma-imx6q-to1.bin ${B}/firmware/imx/sdma/sdma-imx6q-to1.bin
-}
+#do_compile_prepend () {
+#   mkdir -p ${B}/firmware/imx/sdma
+#   ln -sf ${S}/firmware/imx/sdma/sdma-imx6q-to1.bin ${B}/firmware/imx/sdma/sdma-imx6q-to1.bin
+#}
